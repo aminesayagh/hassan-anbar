@@ -5,22 +5,6 @@ const textDefault = 'inline-block align-middle';
 const fontFamilyTitle = 'font-sans';
 const fontFamilyText = 'font-sans';
 
-export const textColorDegree = {
-    "normal": {
-        "0": "",
-        "1": "text-white-100",
-        "2": "text-white-600",
-        "3": "text-white-700",
-        "4": "text-white-800"
-    },
-    "exchanged": {
-        "0": "",
-        "1": "text-black-100",
-        "2": "text-black-400",
-        "3": "text-black-700",
-        "4": "text-black-800"
-    }
-}
 
 export const displayStyle = cva([textDefault, fontFamilyTitle], {
     variants: {
@@ -70,7 +54,6 @@ export const textClassNames = ({ weight, size, degree, exchange }: TextPropsType
             weight
         }),
         Style[`text_${size}`],
-        Style['text'],
-        textColorDegree[!!exchange ? "exchanged" : "normal"][degree]
+        Style['text']
     )
 }

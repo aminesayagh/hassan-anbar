@@ -45,7 +45,7 @@ $h6: 1rem;
 .fit{
   @apply default-text;
   &::selection {
-    @apply bg-primary-500 text-black-200;
+    @apply bg-primary-500 text-content-200;
   }
 }
 .title {
@@ -100,7 +100,7 @@ $h6: 1rem;
     line-height: calc((var(--font-size, $h6) * var(--degree-line-height, 1.2)) / var(--factor, 1));
   }
   &::selection {
-    @apply bg-primary-600 text-black-100;
+    @apply bg-primary-600 text-content-100;
   }
 }
 
@@ -166,7 +166,7 @@ $h6: 1rem;
     @apply tracking-wider lg:tracking-widest;
   }
   &::selection {
-    @apply bg-primary-500 text-black-300;
+    @apply bg-primary-500 text-content-300;
   }
 }
 
@@ -202,6 +202,6 @@ $h6: 1rem;
     line-height: calc((var(--font-size, 4.6rem) * var(--degree-line-height, 1.2))/ var(--factor, 1));
   }
   &::selection {
-    @apply bg-primary-500 text-black-200;
+    @apply bg-primary-500 text-content-200;
   }
 }
