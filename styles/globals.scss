@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.remove_outline {
+  @apply outline-none focus:outline-none touch-none;
+}
+
+html[data-is_loading="false"] .cursor-container {
+  @apply relative z-auto;
+}
+html:not([data-is_loading="false"]) .cursor-container {
+  @apply relative z-cursor;
+}
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
+  overflow: hidden;
+
+}
+
+main, html, body {
+  @apply font-sans;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.will-change-transform-animation {
+  @apply will-change-transform;
+}
+
+
+.is-loaded {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button, li, em {
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Plus spécifique pour éviter les transitions non désirées */
+    &:lang(fr), &:lang(en) {
+      animation: textFadeInOut 2s ease forwards;
+    }
+  }
+  
+  @keyframes textFadeInOut {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+
+
+@font-face  {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+.whitespace-nowrap-important {
+  white-space: nowrap !important;
+}
+
+.whitespace-inherit-important {
+  white-space: inherit !important;
+}
+
+.lenis {
+  -ms-overflow-style: none;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none !important;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+.scrollbar{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 16px;
+  z-index: 1000;
+  padding: 6px 0;
+  .inner {
+    height: 100%;
+    position: relative;
+    background-color: oklch(var(--black-400)/0.05);
+    backdrop-filter: blur(8px);
+  }
+  .thumb {
+    min-height: 120px;
+    width: 8px;
+    background-color: var(--color-black-900);
+    position: absolute;
+    right: 4px;
+    border-radius: 2.8px;
+    border: 1px solid var(--color-black-200);
+    cursor: grab;
+    &:active {
+      cursor: grabbing;
+      background-color: var(--color-gray-800);
+    }
+  }
+}
+
+// in tactile mode and on mobile, we hide the scrollbar
+@media (max-width: 1024px) {
+  .scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    --primary-base: 252.55;
+    --primary-100: 95.39% 0.022 var(--primary-base);
+    --primary-200: 86.39% 0.068 var(--primary-base);
+    --primary-300: 73.59% 0.135 var(--primary-base);
+    --primary-400: 62.95% 0.19 var(--primary-base);
+    --primary-500: 46.98% 0.14 var(--primary-base);
+    --primary-600: 38.77% 0.113 var(--primary-base);
+    --primary-700: 29.7% 0.082 var(--primary-base);
+    --primary-800: 19.82% 0.049 var(--primary-base);
+    --primary-900: 13.26% 0.024 var(--primary-base);
+
+    --comtemt-100: 24.93% 0.03 var(--primary-base);
+    --comtemt-200: 30.08% 0.018 var(--primary-base);
+
+    --comtemt-300: 63.93% 0.01 var(--primary-base);
+    --comtemt-400: 88.75% 0.01 var(--primary-base);
+
+    @mixin color-generate($name) {
+      @each $degree in 100, 200, 300, 400, 500, 600, 700, 800, 900 {
+        --color-#{$name}-#{$degree}: oklch(var(--#{$name}-#{$degree}));
+      }
+    }
+
+    @include color-generate('primary');
+    --color-content-100: oklch(var(--comtemt-100));
+    --color-content-200: oklch(var(--comtemt-200));
+    --color-content-300: oklch(var(--comtemt-300));
+    --color-content-400: oklch(var(--comtemt-400));
+  }
+}
+.body-background {
+  background-color: var(--color-content-400);
+}
+
+@layer base {
+  body{
+    @apply font-sans body-background;
+  }
+}
