@@ -4,12 +4,11 @@ import { LinkProps } from 'next/link';
 
 import { titleStyle, textStyle, displayStyle } from './Typography.style';
 
-type TypeDegree = '0' | '1' | '2' | '3' | '4';
+type TypeDegree = '1' | '2' | '3' | '4';
 // DISPLAY
 export type DisplayPropsExtended = VariantProps<typeof displayStyle> & {
     children: React.ReactNode | string;
     className?: string;
-    exchange?: boolean;
     size?: 'xl' | 'lg' | 'md';
     style?: React.CSSProperties;
 }
@@ -35,7 +34,6 @@ export type TitlePropsExtended = TitleElement & VariantProps<typeof titleStyle> 
     children: React.ReactNode | string;
     className?: string;
     degree: TypeDegree;
-    exchange?: boolean;
     style?: React.CSSProperties;
     suppressHydrationWarning?: boolean;
 }
@@ -60,14 +58,13 @@ type TextElement = {
 };
 
 type TextSizes = 'xl' | 'lg' | 'md' | 'sm' | 'xs' | 'xxs' | 'auto';
-export type TextPropsType = Pick<TextPropsExtended, 'exchange' | 'size' | 'weight' | 'degree'>;
+export type TextPropsType = Pick<TextPropsExtended, 'size' | 'weight' | 'degree'>;
 
 export type TextPropsExtended = TextElement & VariantProps<typeof textStyle> & {
     children: React.ReactNode | string;
     className?: string;
-    degree: '0' | '1' | '2' | '3' | '4';
+    degree: '1' | '2' | '3' | '4';
     size: TextSizes,
-    exchange?: boolean;
     style?: React.CSSProperties;
     suppressHydrationWarning?: boolean;
 }
@@ -75,8 +72,7 @@ export type TextPropsExtended = TextElement & VariantProps<typeof textStyle> & {
 export type LinkPropsExtended = LinkProps & VariantProps<typeof textStyle> & {
     children: React.ReactNode | React.ReactNode[] | string;
     className?: string;
-    degree?: '0' | '1' | '2' | '3' | '4';
+    degree?: '1' | '2' | '3' | '4';
     size?: TextSizes,
-    exchange?: boolean;
     animation?: 'animationHover';
 }

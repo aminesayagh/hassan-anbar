@@ -52,21 +52,21 @@ const config: Config = {
       current: "currentColor",
       'primary': {
         DEFAULT: 'oklch(var(--primary-500) / <alpha-value>)',
-        100: 'oklch(var(--primary-100) / <alpha-value>)',
-        200: 'oklch(var(--primary-200) / <alpha-value>)',
-        300: 'oklch(var(--primary-300) / <alpha-value>)',
-        400: 'oklch(var(--primary-400) / <alpha-value>)',
-        500: 'oklch(var(--primary-500) / <alpha-value>)',
-        600: 'oklch(var(--primary-600) / <alpha-value>)',
-        700: 'oklch(var(--primary-700) / <alpha-value>)',
-        800: 'oklch(var(--primary-800) / <alpha-value>)',
-        900: 'oklch(var(--primary-900) / <alpha-value>)',
+        '100': 'oklch(var(--primary-100) / <alpha-value>)',
+        '200': 'oklch(var(--primary-200) / <alpha-value>)',
+        '300': 'oklch(var(--primary-300) / <alpha-value>)',
+        '400': 'oklch(var(--primary-400) / <alpha-value>)',
+        '500': 'oklch(var(--primary-500) / <alpha-value>)',
+        '600': 'oklch(var(--primary-600) / <alpha-value>)',
+        '700': 'oklch(var(--primary-700) / <alpha-value>)',
+        '800': 'oklch(var(--primary-800) / <alpha-value>)',
+        '900': 'oklch(var(--primary-900) / <alpha-value>)',
       },
       content: {
-        100: 'oklch(var(--content-100) / <alpha-value>)',
-        200: 'oklch(var(--content-200) / <alpha-value>)',
-        300: 'oklch(var(--content-300) / <alpha-value>)',
-        400: 'oklch(var(--content-400) / <alpha-value>)'
+        '100': 'oklch(var(--content-100) / <alpha-value>)',
+        '200': 'oklch(var(--content-200) / <alpha-value>)',
+        '300': 'oklch(var(--content-300) / <alpha-value>)',
+        '400': 'oklch(var(--content-400) / <alpha-value>)'
       }
     },
     screens: {

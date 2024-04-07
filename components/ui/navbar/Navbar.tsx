@@ -115,8 +115,11 @@ const Item = ({ children, href }: ItemProps) => {
     const { isActive, handlerActiveItem } = useActiveItem(href.toString());
 
     if (!handlerActiveItem) return <></>;
-
-    return <>{children({ isActive, handlerActiveItem })}</>
+    if (typeof children === 'function') {
+        return <>{children({ isActive, handlerActiveItem })}</>
+    }
+    console.warn('Navbar.Item must be a function');
+    return children;
 }
 
 const Link = ({ children, href, className, ...props }: LinkProps) => {

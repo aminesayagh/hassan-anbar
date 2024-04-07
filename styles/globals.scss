@@ -188,11 +188,11 @@ main, html, body {
     --primary-800: 19.82% 0.049 var(--primary-base);
     --primary-900: 13.26% 0.024 var(--primary-base);
 
-    --comtemt-100: 24.93% 0.03 var(--primary-base);
-    --comtemt-200: 30.08% 0.018 var(--primary-base);
+    --content-100: 24.93% 0.03 var(--primary-base);
+    --content-200: 30.08% 0.018 var(--primary-base);
 
-    --comtemt-300: 63.93% 0.01 var(--primary-base);
-    --comtemt-400: 88.75% 0.01 var(--primary-base);
+    --content-300: 63.93% 0.01 var(--primary-base);
+    --content-400: 88.75% 0.01 var(--primary-base);
 
     @mixin color-generate($name) {
       @each $degree in 100, 200, 300, 400, 500, 600, 700, 800, 900 {
@@ -201,10 +201,10 @@ main, html, body {
     }
 
     @include color-generate('primary');
-    --color-content-100: oklch(var(--comtemt-100));
-    --color-content-200: oklch(var(--comtemt-200));
-    --color-content-300: oklch(var(--comtemt-300));
-    --color-content-400: oklch(var(--comtemt-400));
+    --color-content-100: oklch(var(--content-100));
+    --color-content-200: oklch(var(--content-200));
+    --color-content-300: oklch(var(--content-300));
+    --color-content-400: oklch(var(--content-400));
   }
 }
 .body-background {

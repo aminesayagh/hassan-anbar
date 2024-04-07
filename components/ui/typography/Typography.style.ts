@@ -39,21 +39,29 @@ export const textStyle = cva([textDefault, fontFamilyText], {
             semibold: 'font-semibold',
             medium: 'font-medium',
         },
+        degree: {
+            '1': 'text-content-100',
+            '2': 'text-content-200',
+            '3': 'text-content-300',
+            '4': 'text-content-400',
+        }
     },
     defaultVariants: {
         weight: 'medium',
+        degree: '2'
     }
 })
 import { TextPropsType } from './Typography.type';
 import { twMerge } from 'tailwind-merge';
 import Style from './Typography.module.scss';
 
-export const textClassNames = ({ weight, size, degree, exchange }: TextPropsType) => {
+export const textClassNames = ({ weight, size, degree }: TextPropsType) => {
     return twMerge(
         textStyle({
-            weight
+            weight,
+            degree
         }),
         Style[`text_${size}`],
-        Style['text']
+        Style['text'],
     )
 }

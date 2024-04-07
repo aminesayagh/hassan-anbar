@@ -15,8 +15,7 @@ const ButtonUi = forwardRef<HTMLButtonElement, ButtonProps>(
       full,
       weight,
       name,
-      degree = "0",
-      exchange,
+      degree = "1",
       className,
       ...props
     },
@@ -31,10 +30,10 @@ const ButtonUi = forwardRef<HTMLButtonElement, ButtonProps>(
           "text-clip whitespace-nowrap overflow-hidden",
           "align-middle",
           full ? "w-full" : "",
-          textClassNames({ weight, size, degree, exchange }),
+          textClassNames({ weight, size, degree }),
           typeof className == "string" ? className : ""
         ),
-      [size, full, weight, degree, exchange, className]
+      [size, full, weight, degree, className]
     );
 
     return (

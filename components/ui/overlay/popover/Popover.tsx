@@ -16,9 +16,9 @@ const PopoverUi = ({ children, ...props }: { children: React.ReactNode[] | React
     )
 }
 
-const ButtonUi = ({ children, className = '', ...props }: { children: ({ open }: { open: () => void }) => React.ReactNode } & { className?: string } & DialogTriggerProps) => {
+const ButtonUi = ({ children, className = '', ...props }: { children: React.ReactNode | (({ open }: { open: () => void }) => React.ReactNode) } & { className?: string } & DialogTriggerProps) => {
     const { setOpen } = React.useContext(PopoverContext);
-    return typeof children == 'function' ? children({ open: () => setOpen(true) }) : <Button className={className} onPress={() => setOpen(true)} {...props}>{children}</Button>
+    return typeof children === 'function' ? children({ open: () => setOpen(true) }) : <Button className={`flex outline-none ${className}`} onPress={() => setOpen(true)} {...props}>{children}</Button>
 }
 
 const PopoverContentUi = ({ children, ...props }: {
@@ -26,9 +26,9 @@ const PopoverContentUi = ({ children, ...props }: {
 } & Omit<PopoverProps, 'children'> & React.RefAttributes<HTMLElement>) => {
     return <Popover {...props} >
         <OverlayArrow>
-            <svg width='12' height='12' ><path d='M0 0,L6 6,L12 0' /></svg>
+            <svg width='12' height='12' className='rotate-180' ><path d='M0 0,L6 6,L12 0' /></svg>
         </OverlayArrow>
-        <Dialog >
+        <Dialog className='outline-none' >
             {typeof children == 'function' ? <PopoverContext.Consumer>
                 {(value) => children({ close: () => value.setOpen(false) })}
             </PopoverContext.Consumer> : children}

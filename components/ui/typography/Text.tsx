@@ -11,7 +11,6 @@ const Text: FC<TextPropsExtended> = ({
   weight,
   degree = "3",
   size,
-  exchange,
   className,
   children,
   ...props
@@ -38,10 +37,10 @@ const Text: FC<TextPropsExtended> = ({
 
   const classes = useMemo(() => {
     return twMerge(
-        textClassNames({ weight, size, degree, exchange }),
+        textClassNames({ weight, size, degree }),
         className
     );
-  }, [weight, size, degree, exchange, className])
+  }, [weight, size, degree, className])
 
   return React.createElement(
     ElementType,

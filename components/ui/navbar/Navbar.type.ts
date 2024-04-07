@@ -22,7 +22,7 @@ export type ContentProps = {
 }
 
 export type ItemProps = {
-    children: (p: { isActive?: boolean, handlerActiveItem?: (item: string) => void }) => React.ReactNode | React.ReactNode[];
+    children: ((p: { isActive?: boolean, handlerActiveItem?: (item: string) => void }) => React.ReactNode) | React.ReactNode;
     href: string;
 }
 
