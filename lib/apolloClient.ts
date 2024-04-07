@@ -67,7 +67,6 @@ const deserializeBlocks = (blocks: any[]) => {
     if (newBlock.saveContent && isString(newBlock.saveContent)) {
       const root = parseBlockContent(newBlock.saveContent, newBlock.name);
       newBlock.saveContent = root;
-      console.log('root ', root);
     }
 
     return newBlock;

@@ -101,38 +101,40 @@ export const PageSchema = z.object({
 
 export const GeneralSettingsSchema = z.object({
     language: z.string().nullable(),
-    dateFormat: z.string().nullable(),
-    siteFaviconUrl: z.string().optional().default('https://hassanaanbar.masayagh.com/wp-content/uploads/2024/04/cropped-cropped-Untitled-design-5-192x192-1.png')
+    dateFormat: z.string().nullable()
 });
 
 
 const MenuItemNodeSchema = z.object({
-    id: z.string().nullable(),
-    label: z.string().nullable(),
-    url: z.string().nullable(),
-    childItems: z.object({
-        nodes: z.array(z.object({
-            id: z.string().nullable(),
-            label: z.string().nullable(),
-            url: z.string().nullable()
-        })).nullable()
-    }).nullable()
+    id: z.string(),
+    label: z.string(),
+    url: z.string(),
+    parentId: z.string().nullable()
 });
 
 export const MenuNodeSchema = z.object({
     id: z.string().nullable(),
     name: z.string().nullable(),
     menuItems: z.object({
-        nodes: z.array(MenuItemNodeSchema).nullable()
-    }).nullable()
+        nodes: z.array(MenuItemNodeSchema)
+    })
 });
 
 export const MenusSchema = z.object({
-    nodes: z.array(MenuNodeSchema).nullable()
+    nodes: z.array(MenuNodeSchema)
 });
 
 export const GetPageContentSchema = z.object({
     page: PageSchema,
     generalSettings: GeneralSettingsSchema,
-    menus: MenusSchema
+    menus: MenusSchema,
+    media: z.object({
+        nodes: z.array(z.object({
+            title: z.string(),
+            id: z.string(),
+            altText: z.string(),
+            sourceUrl: z.string(),
+            mediaDetails: MediaDetailsSchema
+        }))
+    })
 });

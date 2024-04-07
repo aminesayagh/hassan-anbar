@@ -30,7 +30,7 @@ const Head = ({
     favicon
 }: SeoProps) => {
     const robotsContent = `${metaRobotsNoindex}, ${metaRobotsNofollow}`;
-
+    
     return (
         <NextSeo
             title={title}

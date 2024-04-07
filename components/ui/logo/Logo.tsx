@@ -1,20 +1,33 @@
-import Link, { LinkProps } from 'next/link';
+import Link, { LinkProps } from "next/link";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from "tailwind-merge";
 
-interface LogoProps extends Omit<LinkProps, 'size' | 'degree' | 'children'> {
-    alt: string;
-    size: number;
-    mode: 'dark' | 'white';
+interface LogoProps extends Omit<LinkProps, "size" | "degree" | "children"> {
+  alt: string;
+  height: number;
+  src: string;
+  width: number;
 }
-const Logo = ({ alt, mode, size, ...props }: LogoProps) => {
-    return <>
-        <Link className={twMerge('flex flex-row items-center justify-center gap-2') as string} {...props}>
-            <Image className='w-12 xxs:w-14' src={`https://res.cloudinary.com/dvxn9nvjs/image/upload/v1680447716/portfolio/logo/${mode == 'dark' ? 'color_double_mode_dark_ya6enh' : 'color_double_mode_light_ryyabn'}.svg`} alt={alt} width={size} height={size}/>
-        </Link>
-    </>
-}
+const Logo = ({ alt, src, height, width, ...props }: LogoProps) => {
+  return (
+    <Link
+      className={
+        twMerge("flex flex-row items-center justify-center gap-2") as string
+      }
+      {...props}
+    >
+      <Image
+        priority
+        className="w-12 xxs:w-16"
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+      />
+    </Link>
+  );
+};
 
 export default Logo;

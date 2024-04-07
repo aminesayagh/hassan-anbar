@@ -22,10 +22,12 @@ const Navbar: NavbarType = ({ children, size, className, inTopOfScroll, ...props
 
     useLenis(({ scroll }) => {
         const progress = scroll.targetScroll;
+        if(typeof progress == 'undefined' || progress < 0) return;
         setPositionScroll(progress);
     });
 
     useIsomorphicLayoutEffect(() => {
+        console.log('position scroll: ',positionScroll);
         if (positionScroll < 140) {
             setActive(false);
         } else {

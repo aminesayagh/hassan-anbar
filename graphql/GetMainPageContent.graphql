@@ -43,7 +43,6 @@ query GetPageContent {
   generalSettings {
     language
     dateFormat
-    siteFaviconUrl
   }
   menus {
     nodes {
@@ -53,15 +52,21 @@ query GetPageContent {
         nodes {
           id
           label
+          parentId
           url
-          childItems {
-            nodes {
-              id
-              label
-              url
-            }
-          }
         }
+      }
+    }
+  }
+  media: mediaItems(where: {in: [26, 18]}) {
+    nodes {
+      title
+      id
+      sourceUrl
+      altText
+      mediaDetails {
+        width
+        height
       }
     }
   }
