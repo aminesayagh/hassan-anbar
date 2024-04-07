@@ -1,6 +1,8 @@
 import { useMemo, useEffect, useState } from "react";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
+import { ApolloProvider } from '@apollo/client';
+import { apolloClient } from '../lib/apolloClient';
 
 import { Montserrat } from "next/font/google";
 
@@ -29,9 +31,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+    <ApolloProvider client={apolloClient}>
       <main className="app-container">
         <Component {...pageProps} />
       </main>
+    </ApolloProvider>
     </>
   );
 }

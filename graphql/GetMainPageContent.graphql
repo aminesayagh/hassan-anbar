@@ -1,0 +1,68 @@
+query GetPageContent {
+  page(id: "home", idType: URI) {
+    title
+    seo {
+      title
+      metaKeywords
+      metaDesc
+      opengraphSiteName
+      opengraphImage {
+        altText
+        link
+        mediaDetails {
+          width
+          height
+        }
+      }
+      opengraphDescription
+      opengraphSiteName
+      metaRobotsNoindex
+      metaRobotsNofollow
+      focuskw
+    }
+    blocks {
+      name
+      ... on CoreParagraphBlock {
+        saveContent
+        attributesJSON
+      }
+      ... on CoreHeadingBlock {
+        saveContent
+        attributesJSON
+      }
+      ... on CoreButtonsBlock {
+        saveContent
+        attributesJSON
+      }
+      ... on CoreImageBlock {
+        attributesJSON
+        saveContent
+      }
+    }
+  }
+  generalSettings {
+    language
+    dateFormat
+    siteFaviconUrl
+  }
+  menus {
+    nodes {
+      id
+      name
+      menuItems {
+        nodes {
+          id
+          label
+          url
+          childItems {
+            nodes {
+              id
+              label
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}

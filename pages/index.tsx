@@ -1,69 +1,81 @@
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import Head from "@/components/common/head";
 import Layer from "@/components/common/layer";
 import Noise from "@/components/ui/noise";
-
-import { Inter } from "next/font/google";
+import { GetPageContentSchema } from "@/helpers/zod";
+import { z } from "zod";
 import Lenis from "@/components/Lenis";
-import { Page } from "@/types/type";
 
 import dynamic from "next/dynamic";
-import { gql } from "@apollo/client";
-import { apolloClient } from '../lib/apolloClient';
+import { useGetPageContentQuery } from '@/types/generated/graphql'
+
+if (process.env.NODE_ENV === "development") {
+  import("@apollo/client/dev").then(({ loadDevMessages, loadErrorMessages }) => {
+    loadDevMessages();
+    loadErrorMessages();
+  });
+}
+
 
 const DynamicLandingPage = dynamic(
   () => import("@/components/pages/LandingPage"),
   {}
 );
 
-const GET_PAGE_CONTENT = gql`
-  query GetPageContent {
-    page(id: "home", idType: URI) {
-      title
-      seo {
-        title
-        metaDesc
-        metaRobotsNoindex
-        metaRobotsNofollow
-        focuskw
-      }
-      content
-      blocks {
-        name
-        ... on CoreParagraphBlock {
-          saveContent
-          attributesJSON
-        }
-        ... on CoreHeadingBlock {
-          saveContent
-          attributesJSON
-        }
-        ... on CoreButtonBlock {
-          attributesJSON
-          saveContent
-        }
-        ... on CoreImageBlock {
-          attributesJSON
-          saveContent
-          name
+type PageContentType = z.infer<typeof GetPageContentSchema>;
+
+function useValidGetContentQuery() {
+  const { data: _data, error, loading } = useGetPageContentQuery();
+  const [data, setValidatedData] = useState<PageContentType | null>(null);
+  const [validationError, setValidationError] = useState<z.ZodError<any> | null>(null);
+
+  useEffect(() => {
+    if (_data && !error) {
+      try {
+        // Parse the data using the Zod schema
+        const result = GetPageContentSchema.parse(_data);
+        console.log(result);
+        setValidatedData(result);
+        setValidationError(null);
+      } catch (e) {
+        if (e instanceof z.ZodError) {
+          setValidationError(e);
         }
       }
     }
-  }
-`;
+  }, [_data, error]);
 
-export default function Home({ page }: {
-  page: Page;
-}) {
-  console.log(page);
+  return { data, error: error || validationError, loading };
+}
+
+export default function Home() {
+  const { data, error, loading } = useValidGetContentQuery();
+  console.log('data ',data);
+  if (loading) {
+    return null;
+  }
+  if (error) {
+    console.error(error);
+    return <div>Error</div>;
+  }
+  if (!data) {
+    return <div>No data found</div>;
+  }
+  console.log('data ',data);
+  const { seo } = data.page;
+  const { siteFaviconUrl: favicon } = data.generalSettings;
   return (
     <>
       <Head
-        title={"Hassan Anbar"}
-        description={"Hassan Anbar"}
-        keywords={"Hassan Anbar"}
-        author={"Hassan Anbar"}
-        logo="/favicon.svg"
+        favicon={favicon}
+        title={seo.title}
+        metaDesc={seo?.metaDesc}
+        metaKeywords={seo?.metaKeywords}
+        focuskw={seo?.focuskw}
+        metaRobotsNoindex={seo?.metaRobotsNoindex}
+        metaRobotsNofollow={seo?.metaRobotsNofollow}
+        opengraphImage={seo?.opengraphImage}
+
       />
       <Lenis>
         <Layer>
@@ -73,15 +85,4 @@ export default function Home({ page }: {
       </Lenis>
     </>
   );
-}
-export async function getStaticProps() {
-  const { data } = await apolloClient.query({
-    query: GET_PAGE_CONTENT,
-  });
-
-  return {
-    props: {
-      page: data.page,
-    },
-  };
 }
