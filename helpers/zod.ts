@@ -36,9 +36,7 @@ const SeoSchema = z.object({
     focuskw: z.string().optional().default('Profitable E-Commerce Storem')
 });
 
-const ObjectSchema = z.any({
-
-});
+const ObjectSchema = z.any();
 const CoreParagraphBlockSchema = z.object({
     name: z.string().optional().default('core/paragraph'),
     saveContent: ObjectSchema,
@@ -69,13 +67,8 @@ const CoreImageBlockSchema = z.object({
     name: z.string().optional().default('core/image'),
     saveContent: ObjectSchema,
     attributesJSON: z.object({
-        url: z.string().optional().default(''),
-        alt: z.string().optional().default(''),
-        id: z.number().optional().default(0),
-        title: z.string().optional().default(''),
-        sizeSlug: z.string().optional().default(''),
-        linkDestination: z.string().optional().default(''),
-        href: z.string().optional().default(''),
+        anchor: z.string().optional().default(''),
+        dropCap: z.boolean().optional().default(false),
     })
 });
 

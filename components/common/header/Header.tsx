@@ -12,6 +12,8 @@ import { useIsomorphicLayoutEffect } from "react-use";
 import Button from "@/components/ui/button/Button";
 import { linkStyle, textStyle } from "@/components/ui/typography/Typography.style";
 
+import { buttonUnderlineStyle } from "@/components/ui/button/Button.style";
+
 const GAP_SIZE_LG = "gap-4 sm:gap-6 lg:gap-7 xl:gap-8";
 interface MenuItemNode {
   id: string;
@@ -177,11 +179,7 @@ const Header = () => {
         </Navbar.Content>
         <Navbar.Content>
           <Modal isOpenExternal={openMenu} menuHandler={menuHandler}>
-            <Modal.Button className={twMerge('uppercase tracking-wider border-b-2 py-1', textStyle({
-              size: 'sm',
-              weight: 'bold',
-              degree: '1'
-            }))} >{action.label}</Modal.Button>
+            <Modal.Button className={twMerge('uppercase tracking-wider border-b-2 py-1', buttonUnderlineStyle)} >{action.label}</Modal.Button>
             <Modal.Content>
               {({ handler }) => (
                 <div className="flex flex-col gap-4 p-4">

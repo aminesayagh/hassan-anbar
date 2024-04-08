@@ -7,7 +7,7 @@ const fontFamilyTitle = 'font-sans';
 const fontFamilyText = 'font-sans';
 
 export type DisplayStyleProps = VariantProps<typeof displayStyle>;
-export const displayStyle = cva([textDefault, fontFamilyTitle, Style['display']], {
+export const displayStyle = cva([textDefault, fontFamilyTitle, 'text-content-100',Style['display']], {
     variants: {
         weight: {
             bold: 'font-black',
@@ -18,7 +18,7 @@ export const displayStyle = cva([textDefault, fontFamilyTitle, Style['display']]
             xl: Style['display_xl'],
             lg: Style['display_lg'],
             md: Style['display_md'],
-        }
+        },
     },
     defaultVariants: {
         weight: 'bold',
@@ -60,7 +60,7 @@ export type TextStyleProps = VariantProps<typeof textStyle>;
 export const textStyle = cva([textDefault, fontFamilyText, Style['text']], {
     variants: {
         weight: {
-            bold: 'font-black',
+            bold: 'font-extrabold',
             semibold: 'font-semibold',
             medium: 'font-medium',
         },

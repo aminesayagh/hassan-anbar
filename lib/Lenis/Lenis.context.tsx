@@ -1,4 +1,4 @@
-import { ReactElement, createContext, useEffect, useRef, forwardRef, useImperativeHandle, useState, ElementRef, useCallback } from 'react';
+import { ReactElement, createContext, useEffect, useRef, forwardRef, useMemo, useImperativeHandle, useState, ElementRef, useCallback } from 'react';
 
 import { gsap, ScrollTrigger } from '@/utils/gsap';
 import Lenis from '@studio-freight/lenis';
@@ -101,11 +101,11 @@ const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(
 
     useResizeObserver<HTMLDivElement>({ ref: content });
 
-    const optionsString = JSON.stringify(options);
+    const memoizedOptions = useMemo(() => options, [options]);
 
     useEffect(() => {
         const lenisInstance = new Lenis({
-            ...options,
+            ...memoizedOptions,
             ...(!root && {
                 wrapper: wrapper.current || undefined,
                 content: content.current || undefined,
@@ -130,7 +130,7 @@ const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(
             lenisInstance.destroy();
             setLenis(undefined);
         }
-    }, [root, optionsString, refresh]);
+    }, [root]);
 
     
 
@@ -155,10 +155,11 @@ const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(
     }, []);
 
     useEffect(() => {
-        lenis?.on('scroll', onScroll);
+        if (!lenis) return;
+        lenis.on('scroll', onScroll);
 
         return () => {
-            lenis?.off('scroll', onScroll);
+            lenis.off('scroll', onScroll);
         }
     }, [lenis, onScroll]);
 

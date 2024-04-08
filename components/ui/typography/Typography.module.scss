@@ -145,7 +145,7 @@ $h6: 1rem;
     //   var(--font-size, 0.9rem) * var(--degree-line-height, 1.5)
     // );
     line-height: calc((var(--font-size, 0.9rem) * var(--degree-line-height, 1.5)) / var(--factor, 1));
-    @apply tracking-widest lg:tracking-wider;
+    @apply tracking-widest lg:tracking-[.092em];
   }
   &_xs {
     @include fluid-type(--font-size, $minScreen, $maxScreen, 0.64rem, 0.7rem);
@@ -183,7 +183,7 @@ $h6: 1rem;
   &_xl {
     @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 5.5rem);
     @screen mdl {
-      @include fluid-type(--font-size, 56.25rem, $maxScreen, 5rem, 8rem);
+      @include fluid-type(--font-size, 56.25rem, $maxScreen, 5rem, 7rem);
     }
     font-size: calc(var(--font-size, 8rem) / var(--factor, 1));
     line-height: calc((var(--font-size, 8rem) * var(--degree-line-height, 1.2))/ var(--factor, 1));
