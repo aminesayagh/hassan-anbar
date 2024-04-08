@@ -5,12 +5,8 @@ import {
   TextPropsExtended,
   validTextElements,
 } from "./Typography.type";
-import { textClassNames } from "./Typography.style";
 
 const Text: FC<TextPropsExtended> = ({
-  weight,
-  degree = "3",
-  size,
   className,
   children,
   ...props
@@ -22,31 +18,30 @@ const Text: FC<TextPropsExtended> = ({
       ) || "p"
     );
   }, [props]);
-  
+
   const elmentProps = useMemo(() => {
-    return Object.keys(props).reduce((acc: {
-        [key: string]: TextPropsExtended[keyof TextPropsExtended];
-    }, prop: any) => {
-        if(!validTextElements.includes(prop as TextNames)) {
-            // @ts-expect-error
-            acc[prop] = props[prop as keyof TextPropsExtended];
+    return Object.keys(props).reduce(
+      (
+        acc: {
+          [key: string]: TextPropsExtended[keyof TextPropsExtended];
+        },
+        prop: any
+      ) => {
+        if (!validTextElements.includes(prop as TextNames)) {
+          // @ts-expect-error
+          acc[prop] = props[prop as keyof TextPropsExtended];
         }
         return acc;
-    }, {});
-  }, [props]);
-
-  const classes = useMemo(() => {
-    return twMerge(
-        textClassNames({ weight, size, degree }),
-        className
+      },
+      {}
     );
-  }, [weight, size, degree, className])
+  }, [props]);
 
   return React.createElement(
     ElementType,
     {
-      className: classes,
-      ...elmentProps
+      className,
+      ...elmentProps,
     },
     children
   );

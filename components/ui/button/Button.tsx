@@ -2,8 +2,18 @@ import { FocusRing } from "react-aria";
 import { Button } from "react-aria-components";
 import { ButtonProps } from "./Button.type";
 import { twMerge } from "tailwind-merge";
-import { textClassNames } from "@/components/ui/typography";
 import React, { forwardRef, useMemo, memo } from "react";
+import { textStyle, TextStyleProps } from "../typography/Typography.style";
+import { cx } from "class-variance-authority";
+
+export interface ButtonPropsExtended extends TextStyleProps {}
+export const buttonStyle = ({ weight, size, degree }: ButtonPropsExtended) => cx([
+  textStyle({
+    weight,
+    size,
+    degree
+  })
+]);
 
 const ButtonUi = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -11,11 +21,8 @@ const ButtonUi = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       icon,
       iconRight,
-      size = "auto",
       full,
-      weight,
       name,
-      degree = "1",
       className,
       ...props
     },
@@ -30,10 +37,9 @@ const ButtonUi = forwardRef<HTMLButtonElement, ButtonProps>(
           "text-clip whitespace-nowrap overflow-hidden",
           "align-middle",
           full ? "w-full" : "",
-          textClassNames({ weight, size, degree }),
           typeof className == "string" ? className : ""
         ),
-      [size, full, weight, degree, className]
+      [full, className]
     );
 
     return (

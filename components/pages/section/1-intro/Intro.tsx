@@ -1,10 +1,34 @@
+import useValidGetContentQuery from "@/hook/useValidGetContentQuery";
+import Text from "@/components/ui/typography/Text";
+import { textStyle } from "@/components/ui/typography/Typography.style";
+
 
 
 const Intro = () => {
+    const { data, error, loading } = useValidGetContentQuery();
+    if (loading) {
+        return null;
+    }
+    if (error) {
+        console.error(error);
+        return <div>Error</div>;
+    }
+    if (!data) {
+        return <div>No data found</div>;
+    }
+
+    const { page: { blocks } } = data;
     return (
-        <div className="flex flex-col items-center justify-center h-screen text-white bg-gray-900">
-            <h1 className="text-6xl font-bold">Hassan Anbar</h1>
-            <h2 className="text-2xl">Full Stack Developer</h2>
+        <div className='grid grid-cols-12 gap-4 pt-20'>
+            <div className=''>
+                <Text className={textStyle({
+                    weight: 'bold',
+                    size: 'xl',
+                    degree: '2'
+                })} p>
+                    ds
+                </Text>
+            </div>
         </div>
     )
 }

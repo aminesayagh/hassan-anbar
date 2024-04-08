@@ -27,7 +27,6 @@ const Navbar: NavbarType = ({ children, size, className, inTopOfScroll, ...props
     });
 
     useIsomorphicLayoutEffect(() => {
-        console.log('position scroll: ',positionScroll);
         if (positionScroll < 140) {
             setActive(false);
         } else {

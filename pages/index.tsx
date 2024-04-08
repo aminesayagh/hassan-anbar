@@ -54,7 +54,8 @@ export default function Home() {
       />
       <Lenis>
         <Layer>
-          <div></div>
+          <DynamicLandingPage />
+          <Noise />
         </Layer>
       </Lenis>
     </>

@@ -62,6 +62,18 @@ const config: Config = {
         '800': 'oklch(var(--primary-800) / <alpha-value>)',
         '900': 'oklch(var(--primary-900) / <alpha-value>)',
       },
+      black: {
+        DEFAULT: 'oklch(var(--black-500) / <alpha-value>)',
+        '100': 'oklch(var(--black-100) / <alpha-value>)',
+        '200': 'oklch(var(--black-200) / <alpha-value>)',
+        '300': 'oklch(var(--black-300) / <alpha-value>)',
+        '400': 'oklch(var(--black-400) / <alpha-value>)',
+        '500': 'oklch(var(--black-500) / <alpha-value>)',
+        '600': 'oklch(var(--black-600) / <alpha-value>)',
+        '700': 'oklch(var(--black-700) / <alpha-value>)',
+        '800': 'oklch(var(--black-800) / <alpha-value>)',
+        '900': 'oklch(var(--black-900) / <alpha-value>)',
+      },
       content: {
         '100': 'oklch(var(--content-100) / <alpha-value>)',
         '200': 'oklch(var(--content-200) / <alpha-value>)',

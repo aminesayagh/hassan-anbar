@@ -9,18 +9,19 @@ interface LogoProps extends Omit<LinkProps, "size" | "degree" | "children"> {
   height: number;
   src: string;
   width: number;
+  className?: string;
 }
-const Logo = ({ alt, src, height, width, ...props }: LogoProps) => {
+const Logo = ({ alt, src, height, width, className, ...props }: LogoProps) => {
   return (
     <Link
       className={
-        twMerge("flex flex-row items-center justify-center gap-2") as string
+        twMerge("flex flex-row items-center justify-center gap-2", className) as string
       }
       {...props}
     >
       <Image
         priority
-        className="w-12 xxs:w-16"
+        className="w-12 xxs:w-[4.6rem]"
         src={src}
         alt={alt}
         width={width}

@@ -1,15 +1,11 @@
-import { VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { LinkProps } from 'next/link';
 
-import { titleStyle, textStyle, displayStyle } from './Typography.style';
+import { DisplayStyleProps, TitleStyleProps, LinkStyleProps } from './Typography.style';
 
-type TypeDegree = '1' | '2' | '3' | '4';
-// DISPLAY
-export type DisplayPropsExtended = VariantProps<typeof displayStyle> & {
+export type DisplayPropsExtended = DisplayStyleProps & {
     children: React.ReactNode | string;
     className?: string;
-    size?: 'xl' | 'lg' | 'md';
     style?: React.CSSProperties;
 }
 
@@ -30,10 +26,9 @@ type TitleElement = {
 export const validTitleElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
 export type TitleNames = typeof validTitleElements[number];
 
-export type TitlePropsExtended = TitleElement & VariantProps<typeof titleStyle> & {
+export type TitlePropsExtended = TitleElement & TitleStyleProps & {
     children: React.ReactNode | string;
     className?: string;
-    degree: TypeDegree;
     style?: React.CSSProperties;
     suppressHydrationWarning?: boolean;
 }
@@ -57,22 +52,15 @@ type TextElement = {
     div: true
 };
 
-type TextSizes = 'xl' | 'lg' | 'md' | 'sm' | 'xs' | 'xxs' | 'auto';
-export type TextPropsType = Pick<TextPropsExtended, 'size' | 'weight' | 'degree'>;
-
-export type TextPropsExtended = TextElement & VariantProps<typeof textStyle> & {
+export type TextPropsExtended = TextElement & {
     children: React.ReactNode | string;
     className?: string;
-    degree: '1' | '2' | '3' | '4';
-    size: TextSizes,
     style?: React.CSSProperties;
     suppressHydrationWarning?: boolean;
 }
 
-export type LinkPropsExtended = LinkProps & VariantProps<typeof textStyle> & {
+export type LinkPropsExtended = LinkProps & {
     children: React.ReactNode | React.ReactNode[] | string;
     className?: string;
-    degree?: '1' | '2' | '3' | '4';
-    size?: TextSizes,
     animation?: 'animationHover';
 }

@@ -138,7 +138,7 @@ $h6: 1rem;
   &_sm {
     @include fluid-type(--font-size, $minScreen, $maxScreen, 0.6rem, 0.64rem);
     @screen lg {
-      @include fluid-type(--font-size, $minScreen, $maxScreen, 0.6rem, 0.74rem);
+      @include fluid-type(--font-size, $minScreen, $maxScreen, 0.6rem, 0.79rem);
     }
     font-size: calc(var(--font-size, 0.9rem) / var(--factor, 1));
     // line-height: calc(

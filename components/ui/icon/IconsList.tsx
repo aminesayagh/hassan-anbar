@@ -1,12 +1,12 @@
 import { SVGAttributes } from "react";
-
+import { IconArrowUpRight } from "@tabler/icons-react";
 export interface IconProps extends SVGAttributes<SVGElement> {
     color?: string;
     size?: number | string;
 }
 
 const ListIconComponents = {
-
+    'IconArrowUpRight': (props: IconProps) => <IconArrowUpRight {...props} />,
 } as const;
 
 export type IconNames = keyof typeof ListIconComponents;

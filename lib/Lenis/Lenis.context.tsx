@@ -17,19 +17,6 @@ interface LenisContextValue {
     removeCallback: (callback: CallbackFunction) => void;
 }
 
-// type EasingFunction = (rawValue: number) => number;
-
-// interface ScrollToParams {
-//     offset?: number;
-//     lerp?: number;
-//     duration?: number;
-//     easing?: EasingFunction;
-//     immediate?: boolean;
-//     lock?: boolean;
-//     force?: boolean;
-//     onComplete?: CallbackFunction;
-// }
-
 interface ReactLenisOptions {
     wrapper?: Window | HTMLElement;
     content?: HTMLElement;
@@ -78,31 +65,26 @@ export const useRoot = create<LenisContextValue>(() => ({
 }));
 
 const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(({ children, root = false, options = {}, autoRaf = true, rafPriority = 0, className, ...props }, ref) => {
-    const wrapper = useRef<ElementRef<'div'>>(null);
-    const content = useRef<ElementRef<'div'>>(null);
-
+    const wrapper = useRef<HTMLDivElement>(null);
+    const content = useRef<HTMLDivElement>(null);
     const [lenis, setLenis] = useState<Lenis>();
 
     const { width: widthContainer, height: heightContainer } = useResizeObserver<HTMLDivElement>({ ref: content });
-
-    
     const width = useDebounce(widthContainer, 30);
     const height = useDebounce(heightContainer, 30);
 
-    const refresh = () => {
+    const refresh = useCallback(() => {
         lenis?.resize();
         ScrollTrigger.clearScrollMemory();
         window.history.scrollRestoration = 'manual';
         ScrollTrigger.refresh();
-    }
+    }, [lenis]);
 
     useEffect(() => {
         if (lenis) {
             refresh();
         }
     }, [lenis, width, height, refresh]);
-
-
 
     const callbacks = useRef<{ callback: CallbackFunction, priority: number }[]>([]);
 
@@ -119,8 +101,10 @@ const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(
 
     useResizeObserver<HTMLDivElement>({ ref: content });
 
+    const optionsString = JSON.stringify(options);
+
     useEffect(() => {
-        const lenis = new Lenis({
+        const lenisInstance = new Lenis({
             ...options,
             ...(!root && {
                 wrapper: wrapper.current || undefined,
@@ -128,12 +112,12 @@ const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(
             }),
         });
 
-        setLenis(lenis);
+        setLenis(lenisInstance);
 
         // lenis.on(event, ScrollTrigger.update);
 
         gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
+            lenisInstance.raf(time * 1000);
         });
 
         gsap.ticker.lagSmoothing(0);
@@ -143,10 +127,10 @@ const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(
         });
         refresh();
         return () => {
-            lenis.destroy();
+            lenisInstance.destroy();
             setLenis(undefined);
         }
-    }, [root, JSON.stringify(options)]);
+    }, [root, optionsString, refresh]);
 
     
 

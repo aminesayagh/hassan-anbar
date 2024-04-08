@@ -12,7 +12,7 @@ function useCurrentLenis() {
 
 export function useLenis(callback?: (lenis: LenisInstance) => void, deps = [], priority = 0) {
     const { lenis, addCallback, removeCallback } = useCurrentLenis();
-    
+    const depsJson = JSON.stringify(deps);
     useEffect(() => {
         if(!callback || !addCallback || !removeCallback || !lenis) return;
 
@@ -22,7 +22,7 @@ export function useLenis(callback?: (lenis: LenisInstance) => void, deps = [], p
         return () => {
             removeCallback(callback);
         }
-    }, [lenis, addCallback, removeCallback, priority, callback, ...deps]);
+    }, [lenis, addCallback, removeCallback, priority, callback, depsJson]);
 
     return lenis;
 }

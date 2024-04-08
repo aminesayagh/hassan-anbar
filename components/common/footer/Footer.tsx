@@ -12,6 +12,7 @@ import _ from 'lodash';
 import Text from '@/components/ui/typography/Text';
 import { useEventListener } from '@/hook/useEventListener';
 import { useLenis } from '@/lib/Lenis';
+import { textStyle } from '@/components/ui/typography/Typography.style';
 
 
 
@@ -28,7 +29,11 @@ const FollowUs = () => {
             <ul className='flex flex-row gap-8 items-center'>
             </ul>
             <span className='overflow-hidden flex'>
-                <Text p className='fallow-button-gsap whitespace-nowrap-important' degree='3' weight='semibold' size='sm' >
+                <Text p className={twMerge('fallow-button-gsap whitespace-nowrap-important', textStyle({
+                    degree: '3',
+                    weight: 'semibold',
+                    size: 'sm'
+                }))} >
                     footer.socialNetwork
                 </Text>
             </span>
@@ -79,16 +84,28 @@ const Footer = () => {
         <div className={twMerge(
                 'max-w-[16rem] xxs:w-8/12 xs:max-w-[46vw] sm:max-w-[40vw] md:max-w-[32vw] mdl:max-w-[30vw] xl:max-w-[20vw] 2xl:max-w-[28vw] 3xl:max-w-[22rem]'
         )} >
-            <TextAnimated lang={'fr'} degree='3' weight='medium' size='md' className='uppercase max-w-xs justify-start gap-x-2' phrase={'footer.state'} />
+            <TextAnimated lang={'fr'} className={twMerge('uppercase max-w-xs justify-start gap-x-2', textStyle({
+                degree: '3',
+                weight: 'medium',
+                size: 'md'
+            }))} phrase={'footer.state'} />
         </div>
         <div className={twMerge('flex flex-row flex-wrap sm:flex-nowrap justify-between', 'gap-y-4', 'pb-10 pt-6')}>
             <div className={twMerge('flex flex-row flex-1', 'order-2 sm:order-1')} >
             </div>
             <div className='flex flex-row flex-none grow-0 justify-start sm:justify-center items-center  order-1 sm:order-2'>
-                <Text p degree='3' weight='semibold' size='sm' className='uppercase'>
+                <Text p className={twMerge('uppercase', textStyle({
+                    degree: '3',
+                    weight: 'semibold',
+                    size: 'sm'
+                }))}>
                     footer.name
                 </Text>
-                <Text p degree='3' weight='semibold' size='sm' className={twMerge('ml-2')} >
+                <Text p className={twMerge('ml-2', textStyle({
+                    degree: '3',
+                    weight: 'semibold',
+                    size: 'sm'
+                }))} >
                     footer.copy
                 </Text>
             </div>

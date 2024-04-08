@@ -13,22 +13,14 @@ const montserrat = Montserrat({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const font = useMemo(() => montserrat.variable, [montserrat]);
-  const [isReadyFont, setIsReadyFont] = useState(false);
   useEffect(() => {
+    const font = montserrat.variable;
     document.documentElement.style.setProperty("--font-montserrat", font);
     document.body.classList.add(font);
-    const time = setTimeout(() => {
-      setIsReadyFont(true);
-    }, 1000);
-    return () => {
-      setIsReadyFont(false);
-      clearTimeout(time);
-    };
-  }, [font]);
-
-  if (!font) return null;
-
+  }, []);
+  if(montserrat.variable === undefined) {
+    return null;
+  }
   return (
     <>
     <ApolloProvider client={apolloClient}>

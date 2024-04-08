@@ -2,7 +2,7 @@
 import React from 'react';
 import { VariantProps } from 'class-variance-authority';
 import { containerStyle } from '@/components/ui/container';
-import { TextType } from '../typography';
+import { TextType } from '@/components/ui/typography';
 
 
 export type NavbarProps = {

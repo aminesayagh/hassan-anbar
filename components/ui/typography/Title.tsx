@@ -1,16 +1,11 @@
 import React, { FC, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
-
-import Style from "./Typography.module.scss";
-import { textColorDegree, titleStyle } from "./Typography.style";
+import { titleStyle } from "./Typography.style";
 
 import type { TitleNames, TitlePropsExtended } from "./Typography.type";
 import { validTitleElements } from "./Typography.type";
 
 const Title: FC<TitlePropsExtended> = ({
-  weight,
-  degree = "1",
-  exchange,
   className,
   children,
   ...props
@@ -41,23 +36,10 @@ const Title: FC<TitlePropsExtended> = ({
     );
   }, [props]);
 
-  const classes = useMemo(
-    () =>
-      twMerge(
-        titleStyle({
-          weight,
-        }),
-        className,
-        Style[`title_${ElementType}`],
-        Style["title"],
-        textColorDegree[exchange ? "exchanged" : "normal"][degree]
-      ),
-    [weight, className, ElementType, degree, exchange]
-  );
   return React.createElement(
     ElementType,
     {
-      className: classes,
+      className,
       ...elementProps
     },
     children
