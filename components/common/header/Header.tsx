@@ -110,18 +110,14 @@ const Header = () => {
   // }, []);
 
   const menuHandler = useCallback(() => {
-    if (!openMenu) {
-      setOpenMenu(true);
-    } else {
-      ctx.current.close();
-    }
-  }, [openMenu, ctx]);
+    
+  }, []);
 
-  useEffect(() => {
-    if (openMenu) {
-      ctx.current.open();
-    }
-  }, [openMenu]);
+  // useEffect(() => {
+  //   if (openMenu) {
+  //     ctx.current.open();
+  //   }
+  // }, [openMenu]);
 
 
   if (loading) {

@@ -27,10 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
       nullTargetWarn: false,
     });
     let ctx = gsap.context((self) => {
-      // gsap.to(app, {
-      //   duration: 1,
-      //   autoAlpha: 1,
-      // });
       gsap.fromTo(app, {
         autoAlpha: 0,
         visibility: "hidden",

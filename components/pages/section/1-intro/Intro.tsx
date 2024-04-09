@@ -4,11 +4,14 @@ import Display from "@/components/ui/typography/Display";
 import Title from "@/components/ui/typography/Title";
 import Button, { buttonUnderlineStyle } from "@/components/ui/button";
 import Container, { containerStyle } from "@/components/ui/container";
-
+import Link from '@/components/ui/typography/Link';
 import {
   textStyle,
   titleStyle,
+  linkStyle,
 } from "@/components/ui/typography/Typography.style";
+import TypeIt from "typeit-react";
+
 import { twMerge } from "tailwind-merge";
 
 const anchors = [
@@ -42,6 +45,39 @@ const normalButtonStyle = twMerge(
 
 const maxWidthOfBlock = "max-w-[17.3rem] 2xl:max-w-[20rem]";
 
+// function TextAnimatedDecoration() {
+//   return (
+//     <div className="relative after:absolute after:bg-neutral-400 after:bottom-0 after:left-0 after:h-px after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300">
+//       <span className="text-neutral-400">Text Animated Decoration</span>
+//     </div>
+//   );
+// }
+
+const LinkUi = ({ href, children, className }: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <Link href={href} className={twMerge(className)} >
+      {children}
+    </Link>
+  );
+}
+
+const LinkAnimatedDecoration = ({ href, children }: {
+  href: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <LinkUi href={href} className="relative after:absolute after:bg-neutral-400 after:bottom-0 after:left-0 after:h-px after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300">
+      <span className={normalButtonStyle}>
+
+        {children}
+      </span>
+    </LinkUi>
+  );
+}
 
 //
 const Intro = () => {
@@ -98,6 +134,7 @@ const Intro = () => {
   const buttonContact = blocks.find(
     (block) => block?.attributesJSON.anchor === anchors[10]
   );
+  const text =titleH1Main?.saveContent.content.split(" ");
 
   return (
     <Container
@@ -170,9 +207,9 @@ const Intro = () => {
             {paraProve3?.saveContent.content}
           </Text>
           <span>
-            <Button className={normalButtonStyle}>
+            <LinkAnimatedDecoration href='/#'>
               {buttonJoin?.saveContent.children[0].content}
-            </Button>
+            </LinkAnimatedDecoration>
           </span>
         </div>
         <div
@@ -189,7 +226,19 @@ const Intro = () => {
             size="xl"
             className="uppercase relative -left-[0.2rem] lg:-left-[0.4rem] 4xl:-left-2"
           >
-            {titleH1Main?.saveContent.content}
+            {text[0]} <br /> {text[1]} <br />
+            <TypeIt options={{
+              speed: 250,
+              waitUntilVisible: true,
+              cursor: false,
+              loop: true,
+              loopDelay: 500,
+              strings: text[2]
+            }} getBeforeInit={(instance) => {
+              instance.pause(500).delete().type('Website').pause(500).delete().type('page').pause(500);
+              return instance;
+            }}>
+            </TypeIt>
           </Display>
           <div className="flex flex-row justify-start items-center gap-2 md:gap-3">
             <div className="h-[0.16rem] w-8 bg-content-100"></div>
@@ -234,18 +283,18 @@ const Intro = () => {
           </Text>
         </div>
         <div className="flex justify-start col-start-1 row-start-5 sm:row-start-4 col-span-3 place-self-stretch">
-          <Button className={normalButtonStyle}>
+          <LinkAnimatedDecoration href='#'>
             {buttonNewsletter?.saveContent.children[0].content}
-          </Button>
+          </LinkAnimatedDecoration>
         </div>
         <div className={twMerge(
           "flex justify-start xl:justify-end place-self-stretch",
           "col-start-1 sm:col-start-4 col-span-4 sm:col-span-2 xl:col-start-11 xl:col-span-2",
           "row-start-6 sm:row-start-5 md:row-start-4"
         )}>
-          <Button className={normalButtonStyle}>
+          <LinkAnimatedDecoration href='#'>
             {buttonContact?.saveContent.children[0].content}
-          </Button>
+          </LinkAnimatedDecoration>
         </div>
       </div>
     </Container>
