@@ -181,23 +181,8 @@ $h6: 1rem;
   }
   --degree-line-height: 1;
   &_xl {
-    // @include fluid-type(--font-size, $minScreen, 56.25rem, 2rem, 3rem);
-    // @include xs {
-    //   @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 4rem);
-    // }
-    // @screen md {
-    //   @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 5rem);
-    // }
-    // @screen lg {
-    //   @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 5.6rem);
-    // }
-    // @screen xl {
-    //   @include fluid-type(--font-size, 56.25rem, $maxScreen, 5rem, 6.8rem);
-    // }
-    // font-size: calc(var(--font-size, 8rem) / var(--factor, 1));
     @apply text-[11.2vw] xxs:text-[10.3vw] xs:text-[10.2vw] sm:text-[8vw] md:text-[6.5vw] 3xl:text-[5.4em];
     line-height: 110%;
-    // line-height: calc((var(--font-size, 8rem) * var(--degree-line-height, 1.2))/ var(--factor, 1));
   }
   &::selection {
     @apply bg-primary-300 text-content-400;

@@ -141,7 +141,7 @@ const Intro = () => {
       as="section"
       size="lg"
       id="intro"
-      className="relative sm:h-screen max-h-screnn overflow-hidden"
+      className="relative sm:h-screen sm:max-h-screnn"
     >
       <div
         className={twMerge(
@@ -232,10 +232,10 @@ const Intro = () => {
               waitUntilVisible: true,
               cursor: false,
               loop: true,
-              loopDelay: 500,
+              loopDelay: 1200,
               strings: text[2]
             }} getBeforeInit={(instance) => {
-              instance.pause(500).delete().type('Website').pause(500).delete().type('page').pause(500);
+              instance.pause(500).delete().type(text[3]).pause(500).delete().type(text[4]).pause(500);
               return instance;
             }}>
             </TypeIt>
@@ -289,7 +289,7 @@ const Intro = () => {
         </div>
         <div className={twMerge(
           "flex justify-start xl:justify-end place-self-stretch",
-          "col-start-1 sm:col-start-4 col-span-4 sm:col-span-2 xl:col-start-11 xl:col-span-2",
+          "col-start-1 md:col-start-4 col-span-4 sm:col-span-2 xl:col-start-11 xl:col-span-2",
           "row-start-6 sm:row-start-5 md:row-start-4"
         )}>
           <LinkAnimatedDecoration href='#'>
