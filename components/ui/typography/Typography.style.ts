@@ -15,9 +15,7 @@ export const displayStyle = cva([textDefault, fontFamilyTitle, 'text-content-100
             medium: 'font-regular',
         },
         size: {
-            xl: Style['display_xl'],
-            lg: Style['display_lg'],
-            md: Style['display_md'],
+            xl: Style['display_xl']
         },
     },
     defaultVariants: {

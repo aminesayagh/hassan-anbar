@@ -45,7 +45,7 @@ $h6: 1rem;
 .fit{
   @apply default-text;
   &::selection {
-    @apply bg-primary-500 text-content-200;
+    @apply bg-primary-500 text-content-400;
   }
 }
 .title {
@@ -100,7 +100,7 @@ $h6: 1rem;
     line-height: calc((var(--font-size, $h6) * var(--degree-line-height, 1.2)) / var(--factor, 1));
   }
   &::selection {
-    @apply bg-primary-600 text-content-100;
+    @apply bg-primary-500 text-content-400;
   }
 }
 
@@ -138,7 +138,7 @@ $h6: 1rem;
   &_sm {
     @include fluid-type(--font-size, $minScreen, $maxScreen, 0.6rem, 0.64rem);
     @screen lg {
-      @include fluid-type(--font-size, $minScreen, $maxScreen, 0.6rem, 0.79rem);
+      @include fluid-type(--font-size, $minScreen, $maxScreen, 0.6rem, 0.82rem);
     }
     font-size: calc(var(--font-size, 0.9rem) / var(--factor, 1));
     // line-height: calc(
@@ -166,7 +166,7 @@ $h6: 1rem;
     @apply tracking-wider lg:tracking-widest;
   }
   &::selection {
-    @apply bg-primary-500 text-content-300;
+    @apply bg-primary-400 text-content-400;
   }
 }
 
@@ -181,27 +181,25 @@ $h6: 1rem;
   }
   --degree-line-height: 1;
   &_xl {
-    @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 5.5rem);
-    @screen mdl {
-      @include fluid-type(--font-size, 56.25rem, $maxScreen, 5rem, 7rem);
-    }
-    font-size: calc(var(--font-size, 8rem) / var(--factor, 1));
-    line-height: calc((var(--font-size, 8rem) * var(--degree-line-height, 1.2))/ var(--factor, 1));
-  }
-  &_lg {
-    @include fluid-type(--font-size, $minScreen, $maxScreen, 3rem, 6rem);
-    font-size: calc(var(--font-size, 6rem) / var(--factor, 1));
-    line-height: calc((var(--font-size, 6rem) * var(--degree-line-height, 1.2))/ var(--factor, 1));
-  }
-  &_md {
-    @include fluid-type(--font-size, $minScreen, 56.25rem, 1.7rem, 3rem);
-    @screen mdl {
-      @include fluid-type(--font-size, 56.25rem, $maxScreen, 2.4rem, 3.6rem);
-    }
-    font-size: calc(var(--font-size, 4.6rem) / var(--factor, 1));
-    line-height: calc((var(--font-size, 4.6rem) * var(--degree-line-height, 1.2))/ var(--factor, 1));
+    // @include fluid-type(--font-size, $minScreen, 56.25rem, 2rem, 3rem);
+    // @include xs {
+    //   @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 4rem);
+    // }
+    // @screen md {
+    //   @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 5rem);
+    // }
+    // @screen lg {
+    //   @include fluid-type(--font-size, $minScreen, 56.25rem, 3rem, 5.6rem);
+    // }
+    // @screen xl {
+    //   @include fluid-type(--font-size, 56.25rem, $maxScreen, 5rem, 6.8rem);
+    // }
+    // font-size: calc(var(--font-size, 8rem) / var(--factor, 1));
+    @apply text-[11.2vw] xxs:text-[10.3vw] xs:text-[10.2vw] sm:text-[8vw] md:text-[6.5vw] 3xl:text-[5.4em];
+    line-height: 110%;
+    // line-height: calc((var(--font-size, 8rem) * var(--degree-line-height, 1.2))/ var(--factor, 1));
   }
   &::selection {
-    @apply bg-primary-500 text-content-200;
+    @apply bg-primary-300 text-content-400;
   }
 }

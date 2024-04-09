@@ -92,7 +92,7 @@ const config: Config = {
       "xl": "1280px",
       "2xl": "1536px",
       "3xl": "1600px",
-      "4xl": "2100px",
+      "4xl": "2100px"
     },
     zIndex: {
       bg: "-1",

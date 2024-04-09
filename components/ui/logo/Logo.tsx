@@ -15,13 +15,13 @@ const Logo = ({ alt, src, height, width, className, ...props }: LogoProps) => {
   return (
     <Link
       className={
-        twMerge("flex flex-row items-center justify-center gap-2", className) as string
+        twMerge("flex flex-row items-center justify-center gap-2 select-none", className) as string
       }
       {...props}
     >
       <Image
         priority
-        className="w-12 xxs:w-[4.6rem]"
+        className="w-16 sm:w-[4.6rem] 4xl:w-[4rem]"
         src={src}
         alt={alt}
         width={width}

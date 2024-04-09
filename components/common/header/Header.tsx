@@ -13,8 +13,9 @@ import Button from "@/components/ui/button/Button";
 import { linkStyle, textStyle } from "@/components/ui/typography/Typography.style";
 
 import { buttonUnderlineStyle } from "@/components/ui/button/Button.style";
+import { Icon } from "@/components/ui/icon";
 
-const GAP_SIZE_LG = "gap-4 sm:gap-6 lg:gap-7 xl:gap-8";
+const GAP_SIZE_LG = "gap-4 sm:gap-6 xl:gap-8";
 interface MenuItemNode {
   id: string;
   label: string;
@@ -34,6 +35,44 @@ interface MenuItemWithChildren extends Omit<MenuItemNode, "childItems"> {
   children: MenuItemWithChildren[];
 }
 
+const LinkUi = ({ href, children, className }: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return <Link href={href} className={twMerge(linkStyle({
+    size: 'sm',
+    weight: 'semibold',
+    degree: '1'
+  }), className)} >
+    {children}
+  </Link>
+}
+
+{/* <div className="relative overflow-hidden group">
+      <span className="invisible">Text Glitch</span>
+      <span className="text-neutral-400 absolute top-0 left-0 group-hover:-translate-y-full transition-transform ease-in-out duration-500 hover:duration-300">
+        Text Glitch
+      </span>
+      <span className="text-neutral-400 absolute top-0 left-0 translate-y-full group-hover:translate-y-0 transition-transform ease-in-out duration-500 hover:duration-300">
+        Text Glitch
+      </span>
+    </div> */}
+
+const LinkGlitch = ({ href, children }: {
+  href: string;
+  children: React.ReactNode;
+}) => {
+  return <div className='relative overflow-hidden group' >
+    <span className='invisible' >{children}</span>
+    <LinkUi href={href} className='absolute top-0 left-0 group-hover:-translate-y-full transition-transform ease-in-out duration-500 hover:duration-300' >
+      {children}
+    </LinkUi>
+    <LinkUi href={href} className='absolute top-0 left-0 translate-y-full group-hover:translate-y-0 transition-transform ease-in-out duration-500 hover:duration-300' >
+      {children}
+    </LinkUi>
+  </div>
+}
 
 const Header = () => {
   let [openMenu, setOpenMenu] = useState<boolean>(false);
@@ -95,18 +134,18 @@ const Header = () => {
   if (!data) {
     return <div>No data found</div>;
   }
-  
+
   const { media, menus } = data;
   const logo = media?.nodes.find((n) => n.id == "cG9zdDoyNg==");
   const menu = menus?.nodes.find((n) => n.name == "main")?.menuItems.nodes;
   const action = menus?.nodes.find((n) => n.name == "action")?.menuItems.nodes[0];
-  
+
   const nestedMenu = nestMenuItems(menu as MenuItemNode[]);
   if (!logo || !menu || !action) return null;
 
   return (
     <Navbar size="lg" className="overflow-hidden">
-      <span className="w-full flex flex-row gap-8 items-start justify-between">
+      <span className="w-full flex flex-row gap-5 xl:gap-8 items-start justify-between">
         <Navbar.Brand>
           <Logo
             src={logo?.sourceUrl}
@@ -120,6 +159,7 @@ const Header = () => {
         <Navbar.Content
           className={twMerge(
             "flex-1 flex flex-row justify-start overflow-hidden",
+            'hidden mdl:flex',
             GAP_SIZE_LG
           )}
         >
@@ -136,7 +176,10 @@ const Header = () => {
                         degree: '1'
                       })}
                     >
-                      {menu.label}
+                      <span className="flex flex-row gap-1">
+                        {menu.label}
+                        <Icon name='IconArrowDown' className="text-content-100 w-4 sm:w-5" />
+                      </span>
                     </Link>
                   </Popover.Button>
                   <Popover.Content offset={20}>
@@ -165,13 +208,9 @@ const Header = () => {
             return (
               <Navbar.Item href={menu.url} key={menu.id}>
                 {({ isActive, handlerActiveItem }) => (
-                  <Link href={menu.url} className={linkStyle({
-                    size: 'sm',
-                    weight: 'semibold',
-                    degree: '1'
-                  })} > 
+                  <LinkGlitch href={menu.url} >
                     {menu.label}
-                  </Link>
+                  </LinkGlitch>
                 )}
               </Navbar.Item>
             );
@@ -179,7 +218,7 @@ const Header = () => {
         </Navbar.Content>
         <Navbar.Content>
           <Modal isOpenExternal={openMenu} menuHandler={menuHandler}>
-            <Modal.Button className={twMerge('uppercase tracking-wider border-b-2 py-1', buttonUnderlineStyle)} >{action.label}</Modal.Button>
+            <Modal.Button className={buttonUnderlineStyle} ><span className="flex flex-row items-center gap-1">{action.label}<Icon name='IconArrowUpRight' className="text-content-100 w-4 sm:w-6" /></span></Modal.Button>
             <Modal.Content>
               {({ handler }) => (
                 <div className="flex flex-col gap-4 p-4">

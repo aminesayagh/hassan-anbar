@@ -51,7 +51,7 @@ const Navbar: NavbarType = ({ children, size, className, inTopOfScroll, ...props
     const backdropFilter = useMemo(() => active && !inTopOfScroll ? 'blur(40px)' : 'blur(0px)', [active, inTopOfScroll]);
     const backgroundColor = useMemo(() => active && !inTopOfScroll ? '#1f1f1f90' : 'transparent', [active, inTopOfScroll]);
     return (<header className={twMerge(
-        'fixed top-0 left-0 w-full max-w-[100vw] py-4 z-header', className, zIndex.navbar, 'header-gsap will-change-transform-animation'
+        'fixed top-0 left-0 w-full max-w-[100vw] py-4 4xl:py-5 z-header', className, zIndex.navbar, 'header-gsap will-change-transform-animation'
     )}
         style={{
             paddingTop: padding,

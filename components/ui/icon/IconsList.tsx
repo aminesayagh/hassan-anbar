@@ -1,5 +1,5 @@
 import { SVGAttributes } from "react";
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { IconArrowUpRight, IconChevronDown } from "@tabler/icons-react";
 export interface IconProps extends SVGAttributes<SVGElement> {
     color?: string;
     size?: number | string;
@@ -7,6 +7,7 @@ export interface IconProps extends SVGAttributes<SVGElement> {
 
 const ListIconComponents = {
     'IconArrowUpRight': (props: IconProps) => <IconArrowUpRight {...props} />,
+    'IconArrowDown': (props: IconProps) => <IconChevronDown {...props} />,
 } as const;
 
 export type IconNames = keyof typeof ListIconComponents;

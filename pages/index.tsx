@@ -58,6 +58,7 @@ export default function Home() {
           <Noise />
         </Layer>
       </Lenis>
+      
     </>
   );
 }
