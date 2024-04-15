@@ -15,7 +15,7 @@ import { linkStyle, textStyle } from "@/components/ui/typography/Typography.styl
 import { buttonUnderlineStyle } from "@/components/ui/button/Button.style";
 import { Icon } from "@/components/ui/icon";
 
-const GAP_SIZE_LG = "gap-4 sm:gap-6 xl:gap-8";
+const GAP_SIZE_LG = "gap-x-4 sm:gap-x-6 xl:gap-x-8";
 interface MenuItemNode {
   id: string;
   label: string;
@@ -63,7 +63,7 @@ const LinkGlitch = ({ href, children }: {
   href: string;
   children: React.ReactNode;
 }) => {
-  return <div className='relative overflow-hidden group' >
+  return <div className='relative overflow-hidden group max-h-[1.2rem] flex flex-col' >
     <span className='invisible' >{children}</span>
     <LinkUi href={href} className='absolute top-0 left-0 group-hover:-translate-y-full transition-transform ease-in-out duration-500 hover:duration-300' >
       {children}
@@ -101,24 +101,10 @@ const Header = () => {
     []
   );
 
-  // useIsomorphicLayoutEffect(() => {
-  //   ctx.current = gsap.context((self) => {});
-  //   return () => {
-  //     ctx.current.revert();
-  //     tl.current.kill();
-  //   };
-  // }, []);
 
   const menuHandler = useCallback(() => {
     
   }, []);
-
-  // useEffect(() => {
-  //   if (openMenu) {
-  //     ctx.current.open();
-  //   }
-  // }, [openMenu]);
-
 
   if (loading) {
     return <div>Loading...</div>;

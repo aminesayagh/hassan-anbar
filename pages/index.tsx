@@ -55,7 +55,7 @@ export default function Home() {
       <Lenis>
         <Layer>
           <DynamicLandingPage />
-          <Noise />
+          <Noise position="absolute" />
         </Layer>
       </Lenis>
       

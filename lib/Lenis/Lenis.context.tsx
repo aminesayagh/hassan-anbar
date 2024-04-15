@@ -111,6 +111,7 @@ const LenisProvider = forwardRef<LenisInstance | undefined, LenisProviderProps>(
                 content: content.current || undefined,
             }),
         });
+        console.log(lenisInstance);
 
         setLenis(lenisInstance);
 

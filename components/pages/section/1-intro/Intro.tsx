@@ -141,7 +141,7 @@ const Intro = () => {
       as="section"
       size="lg"
       id="intro"
-      className="relative sm:h-screen sm:max-h-screnn"
+      className="relative sm:h-screen sm:max-h-screnn z-10"
     >
       <div
         className={twMerge(
@@ -173,7 +173,7 @@ const Intro = () => {
       </div>
       <div style={{
         zIndex: 200
-      }} className="relative grid grid-cols-12 grid-rows-[repeat(6,_minmax(0,_auto))] xs:grid-rows-[repeat(5,_minmax(0,_auto))] sm:grid-rows-[repeat(4,_minmax(0,_auto))] gap-4 justify-between auto-rows-max items-start h-full pb-4 pt-20 sm:pt-16 lg:pt-32 2xl:pt-24 content-between">
+      }} className="relative grid grid-cols-12 grid-rows-[repeat(6,_minmax(0,_auto))] xs:grid-rows-[repeat(5,_minmax(0,_auto))] sm:grid-rows-[repeat(4,_minmax(0,_auto))] gap-4 justify-between auto-rows-max items-start h-full pb-4 pt-20 sm:pt-16 lg:pt-28 2xl:pt-24 content-between">
         <Text
           className={twMerge(
             proveStyle,
@@ -215,7 +215,7 @@ const Intro = () => {
         <div
           className={twMerge(
             "flex flex-col",
-            "gap-4 md:gap-6",
+            "gap-4 2xl:gap-6",
             "col-start-1 col-span-12 xs:col-span-10 sm:col-span-8 mdl:col-span-7 4xl:col-span-6",
             "row-start-2 row-span-1",
             "pb-2 mdl:pb-9"
@@ -261,7 +261,7 @@ const Intro = () => {
           className={twMerge(
             "flex flex-col gap-2 row-start-4 xs:row-start-3",
             "col-start-1 col-span-5 sm:col-span-4 md:col-span-3 2xl:col-span-2",
-            "pb-4 sm:pb-12",
+            "pb-4 2xl:pb-12",
             maxWidthOfBlock
           )}
         >
